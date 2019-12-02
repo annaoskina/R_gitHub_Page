@@ -1,0 +1,98 @@
+---
+title: "Index"
+author: "Anna"
+date: "28 11 2019"
+output:
+  html_document:
+    theme: spacelab
+    highlight: pygments
+    toc: yes
+    toc_position: right
+    toc_depth: 3
+    toc_float: yes
+    smooth_scroll: false
+bibliography: list.bib
+---
+
+---
+
+## Код на R
+```{r}
+
+library("tidyverse")
+
+dog_names <- read_csv("https://raw.githubusercontent.com/r-classes/2019_2020_ds4dh_hw_2_dplyr_tidyr_ggplot2/master/data/dog_names.csv")
+
+dog <- dog_names %>% 
+  filter(sex != "Unknown") %>% 
+  count(age,sex) %>%
+  mutate(ratio = n/sum(n)) %>% 
+  select(-ratio) %>% 
+  pivot_wider(names_from = "sex", values_from = "n") %>%
+  mutate (all_female = sum(Female),
+          all_male = sum(Male),
+          Male_share = Male/all_male,
+          Female_share = Female/all_female) %>% 
+  select(age, Male_share, Female_share)
+dog
+```
+
+## Код на Python
+
+```{python, python.reticulate = FALSE}
+s1= "I love DH"
+s2 = "DH is great"
+for i, sym in enumerate(s1):
+    for j, sym2 in enumerate(s2):
+        if sym == sym2:
+            print(sym)
+```
+
+## Картинка
+
+![](C:/Users/annao/Dropbox/3-й курс_Бунго/Texts/Басни Эзопа/師子王と鼠の事.PNG)
+
+## Сноска
+
+Оттого что в тоске по жене
+
+Громко стонет фазан,
+
+Что еду себе ищет на поле весеннем,
+
+Известны становятся людям места,
+
+Где бедный фазан приютился на время...[^1]
+
+[^1]: Перевод Глускиной.
+
+
+Ожидает тебя
+
+Вершина далекая Мива,
+
+Хоть и ведомо ей,
+
+Что, быть может, долгие годы
+
+Не придешь ты ее проведать…[^2]
+
+[^2]: Перевод Долина.
+
+
+## Ссылка на литературу
+
+@shirane2002early отмечает, что...
+
+В этой статье @10.2307/2385168 утверждает, что...
+
+
+## Таблица
+
+| Автор                | Произведение | Год написания |   |   |
+|----------------------|--------------|---------------|---|---|
+| Акутагава Рюноскэ    | Мадзюцу      | 1920          |   |   |
+| Нацумэ Сосэки        | Кокоро       | ?             |   |   |
+| Танидзаки Дзюнъитиро | Сасамэюки    | 1936          |   |   |
+
+
